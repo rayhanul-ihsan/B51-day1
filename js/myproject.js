@@ -10,6 +10,12 @@ function submitData(event) {
   const start = document.getElementById('start').value 
   const end = document.getElementById('end').value 
   
+  //data sosmed
+  const linked = document.getElementById('linked').checked;
+  const fb = document.getElementById('fb').checked;
+  const ig = document.getElementById('ig').checked;
+  const twitt = document.getElementById('twitt').checked;
+
   const startDate = new Date(start).getTime();
   const endDate = new Date(end).getTime();
   
@@ -25,6 +31,10 @@ function submitData(event) {
     image,
     description,
     durationMonth,
+    linked,
+    fb,
+    ig,
+    twitt,
   }
 
   data.push(obj)
@@ -37,6 +47,22 @@ function renderMyproject() {
   document.getElementById("contents").innerHTML = ""
 
   for(let i = 0; i < data.length; i++) {
+    const socialMediaIcons = [];
+
+    if (data[i].linked){
+      socialMediaIcons.push(`<img src="./assets/linkedin.svg" alt="linkedin"></img>`);
+    }
+    if (data[i].ig){
+      socialMediaIcons.push(`<img src="./assets/instagram.svg" alt="instagram"></img>`);
+    }
+    if (data[i].fb){
+      socialMediaIcons.push(`<img src="./assets/facebook.svg" alt="facebook"></img>`);
+    }
+    if (data[i].twitt){
+      socialMediaIcons.push(`<img src="./assets/twitter.svg" alt="twitter"></img>`);
+    }
+    
+
     document.getElementById("contents").innerHTML += `
   <div class="project">
       <div class="project-image">
@@ -49,6 +75,10 @@ function renderMyproject() {
     </div>
     <div class="project-p">
         <p>${data[i].description}</p>
+    </div>
+
+    <div class="social-media-icons">
+          ${socialMediaIcons.join(' ')}
     </div>
       
     <div class="btn">
