@@ -10,15 +10,15 @@
                 <ul>
                     <img src="./assets/logo.png" alt="logo">
                     <li>
-                        <a href="./contact-me.html">Home</a>
+                        <a href="./index.html">Home</a>
                     </li>
                     <li>
-                        <a href="./index.html">My Project</a>
+                        <a href="./myproject.html">My Project</a>
                     </li>
                 </ul>
             </div>
             <div class="nav-right">
-                <a href="https://wa.me/6282381009670">contact me</a>
+                <a href="./contact-me.html">contact me</a>
             </div>
         </nav>
         <form>
@@ -43,6 +43,7 @@
             <div>
                 <label for="subject">Subject</label>
                 <select id="subject">
+                    <option></option>
                     <option>Frontend Developer</option>
                     <option>Backend Developer</option>
                     <option>Fullstack Developer</option>
@@ -55,8 +56,9 @@
             </div>
 
             <div>
-                <button type="button" onclick="">Submit</button>
+                <button type="button" onclick="submitData()">Submit</button>
             </div>
         </form>
     </body>
+    <script src="js/contact.js"></script>
 </html>

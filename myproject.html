@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>my project</title>
+        <link href="./css/myproject.css" rel="stylesheet" >
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-left">
+                <ul>
+                    <img src="./assets/logo.png" alt="logo">
+                    <li>
+                        <a href="./index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="./myproject-detail.html">My Project</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <a href="./contact-me.html">contact me</a>
+            </div>
+        </nav>
+
+        <div class="myproject">
+            <div class="myproject-form">
+                <form onsubmit="submitData(event)">
+                    <div>
+                        <h1>ADD MY PROJECT</h1>
+                    </div>
+                    <div>
+                        <label for="name">Project Name</label>
+                        <input type="text" id="name"/>
+                    </div>
+                    <div class="div-date">
+                        <div class="start-date">
+                            <label for="start">Start date</label>
+                            <input type="date" id="start" required>
+                        </div>
+
+                        <div class="end-date">
+                            <label for="end">End date</label>
+                            <input type="date" id="end" required>
+                        </div>
+                    </div>            
+                    <div>
+                        <label for="description">Description</label>
+                        <textarea id="description"></textarea>
+                    </div>
+
+                    <div>
+                        <label>Sosial Media</label>
+                    </div>
+
+                    <table class="table">
+                        <tr>
+                            <td><input type="checkbox" name="linked" value="linked" id="linked"></td>
+                            <td><label for="linked" > linkedin</label></td>
+                            <td><input type="checkbox" name="ig" value="ig" id="ig"></td>
+                            <td><label for="ig"> instagram</label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="fb" value="fb" id="fb"></td>
+                            <td><label for="fb"> facebook</label></td>
+                            <td><input type="checkbox" name="twitt" value="twitt" id="twitt"></td>
+                            <td><label for="twitt"> twitter</label></td>
+                        </tr>
+                    </table>
+
+                    <div>
+                        <label for="myFile">Upload Image</label>
+                        <input type="file" id="myFile">
+                    </div>  
+                    <div class="btn-submit">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            
+            <hr>
+            <div>
+                <h2 style="text-align: center; margin-top: 20px;">MY PROJECT</h2>
+            </div>
+            <div class="myproject-form2" id="contents">
+                <div class="project">
+                    <div class="project-image">
+                        <img src="./assets/img2.jfif" alt="">
+                    </div>
+                    <div>
+                        <h3>
+                            <a href="./my-project-detail.html" target="_blank"></a>Dumbways Mobile App 2021</h3>
+                        <p id="durasi" style="font-size: 14px; color: #5d5c5c; margin-top: -10px;">durasi : 3 bulan</p>
+                    </div>
+                    <div class="project-p">
+                        <p>App that used for Dumbways student, it was deployed and can downloaded on playstore. Happy download</p>
+                    </div>
+                    <div class="btn">
+                        <table>
+                            <tr>
+                                <td><button class="btn-edit">edit</button></td>
+                                <td><button class="btn-delete">delete</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        
+    </body>
+    <script src="./js/myproject.js"></script>
+</html>
