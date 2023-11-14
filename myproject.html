@@ -3,6 +3,10 @@
     <head>
         <title>my project</title>
         <link href="./css/myproject.css" rel="stylesheet" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
 
     <body>
@@ -14,14 +18,20 @@
                         <a href="./index.html">Home</a>
                     </li>
                     <li>
-                        <a href="./myproject-detail.html">My Project</a>
+                        <a href="./myproject.html">MyProject</a>
                     </li>
                 </ul>
             </div>
             <div class="nav-right">
                 <a href="./contact-me.html">contact me</a>
+                <i class="fa-solid fa-bars fa-2x" style="cursor: pointer;" id="hamb-btn" onclick="openMenu()"></i>
             </div>
         </nav>
+        <div class="hamb-nav" id="hamb-nav">
+            <a href="./index.html">Home</a>
+            <a href="./myproject.html">MyProject</a>
+            <a href="./contact-me.html" class="active">Contact Me</a>
+        </div>
 
         <div class="myproject">
             <div class="myproject-form">
@@ -79,29 +89,31 @@
             </div>
             
             <hr>
-            <div>
-                <h2 style="text-align: center; margin-top: 20px;">MY PROJECT</h2>
-            </div>
-            <div class="myproject-form2" id="contents">
-                <div class="project">
-                    <div class="project-image">
-                        <img src="./assets/img2.jfif" alt="">
-                    </div>
-                    <div>
-                        <h3>
-                            <a href="./my-project-detail.html" target="_blank"></a>Dumbways Mobile App 2021</h3>
-                        <p id="durasi" style="font-size: 14px; color: #5d5c5c; margin-top: -10px;">durasi : 3 bulan</p>
-                    </div>
-                    <div class="project-p">
-                        <p>App that used for Dumbways student, it was deployed and can downloaded on playstore. Happy download</p>
-                    </div>
-                    <div class="btn">
-                        <table>
-                            <tr>
-                                <td><button class="btn-edit">edit</button></td>
-                                <td><button class="btn-delete">delete</button></td>
-                            </tr>
-                        </table>
+            <div class="down">
+                <div>
+                    <h2 style="text-align: center; margin-top: 20px;">MY PROJECT</h2>
+                </div>
+                <div class="myproject-form2" id="contents">
+                    <div class="project">
+                        <div class="project-image">
+                            <img src="./assets/img2.jfif" alt="">
+                        </div>
+                        <div>
+                            <h3>
+                                <a href="./my-project-detail.html" target="_blank"></a>Dumbways Mobile App 2021</h3>
+                            <p id="durasi" style="font-size: 14px; color: #5d5c5c; margin-top: -10px;">durasi : 3 bulan</p>
+                        </div>
+                        <div class="project-p">
+                            <p>App that used for Dumbways student, it was deployed and can downloaded on playstore. Happy download</p>
+                        </div>
+                        <div class="btn">
+                            <table>
+                                <tr>
+                                    <td><button class="btn-edit">edit</button></td>
+                                    <td><button class="btn-delete">delete</button></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,4 +121,5 @@
         
     </body>
     <script src="./js/myproject.js"></script>
+    <script src="./js/btn.js"></script>
 </html>
