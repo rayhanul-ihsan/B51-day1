@@ -156,6 +156,7 @@ h2{
     box-shadow: 0 0 10px #3d3d3d;
 }
 
+
 @media only screen and (max-width: 600px){
     .nav-left a{
         display: none;
@@ -167,10 +168,6 @@ h2{
         display: block;
 
     }
-}
-
-
-@media only screen and (max-width: 600px){
     .form{
         display: flex;
         flex-direction: column;
