@@ -24,7 +24,7 @@ function contactMe (req,res) {
     res.render('contact-me')
 }
 function addProjectView (req,res) {
-    res.render('add-project')
+    res.render('project')
 }
 function addProject (req,res) {
     const project = req.body.project
