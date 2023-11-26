@@ -230,8 +230,9 @@ button{
     object-fit: cover;
 }
 
-.myproject-form2 .project .project-image h3{
-    margin-bottom: none;
+.myproject-form2 .project h3 a{
+    text-decoration: none;
+    color: #000000;
     
 }
 

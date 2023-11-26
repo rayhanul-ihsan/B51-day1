@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        *{
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-secondary{
+            background-color: black !important;
+        }
+        .btn1{ 
+            padding: 5px 20px;
+            border-radius: 20px;
+            background-color: black; 
+            text-align: center;
+        }
+        h1{
+            font-size: 30px;
+        }
+        .p{
+            text-align: justify;
+        }
+        body{
+            background-color: #E3E7EB !important;
+        }
+        nav{
+            background-color: #F4F3F3 !important;
+        }
+        .card1{
+            width: 350px;
+            height: 475px;
+            margin-left: 50px;
+            margin-top: 90px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 15px;
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5" style="font-size: 20px;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/home">
+            <img src="/assets/image/logo.png" alt="logo">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/project">Add Project</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/testimonials">Testimonial</a>
+              </li>              
+            </ul>
+            <div>
+                <a href="/contact-me">
+                <button type="button" class="btn btn-secondary">Contact me</button>
+                </a>
+            </div>
+          </div>
+        </div>
+    </nav>
+
+    <div class="container card shadow p-3 mb-5 bg-body rounded" style="width: 800px;">
+        <section class="d-flex justify-content-between ">
+            <div class="leftd-flex justify-content-start p-2 w-50" >
+                <h1 class="mb-4 mt-3">Hi Welcome to my profile</h1>
+                <p class="p mb-5">Hi pals, my name is Muhammad Rayhanul Ihsan for short you can call me ihsan, I was burn in West Sumatra, specifically Bukittinggi. I am 23 years old, and my hobby is sports. I've just graduated from college. I am a beginner in the field of web development.</p>
+                <table class="mb-5">
+                    <thead>
+                        <tr>
+                          <th class="btn1"><a href="https://wa.me/6282381009670" style="color: white; text-decoration: none;">contact</a></th>
+                          <th >download CV</th>
+                          <th ><a href="https://docs.google.com/document/d/1pVgnX7YXHsh7maLtIZJk_rSft-BcWTsI/edit?usp=sharing&ouid=118364168265752114488&rtpof=true&sd=true"><img src="/assets/image/unduh.svg" alt="unduh"></a></th>
+                        </tr>
+                      </thead>   
+                </table>
+                    <div class="d-flex flex-row mb-3" >
+                        <a href="linked"  id="linked" class="p-2"><img src="/assets/image/linkedin.svg" alt="linkedin"></a>
+                        <a href="https://instagram.com/rayhan_ihsn" id="instagram" class="p-2"><img src="/assets/image/instagram.svg" alt="instagram"></a>
+                        <a href="facebook" id="facebook" class="p-2"><img src="/assets/image/facebook.svg" alt="facebook"></a>
+                        <a href="https://x.com/sonofbentala?s=11" id="twitter" class="p-2"><img src="/assets/image/twitter.svg" alt="twitter"></a>
+                    </div>
+            </div>
+                    
+            <div class="card d-flex justify-content-end mt-2 shadow  mb-1 bg-body rounded"  style="width: 45%; ">
+                <img src="/assets/image/pic.JPG" class="card-img-top" alt="rayhan"/>
+                    <div class="card-body" style="text-align: center;">
+                        <h2 class="card-title">M Rayhanul Ihsan</h2>
+                        <p class="card-text">Fullstack Developer</p>
+                    </div>
+            </div>           
+        </section>
+    </div> 
+    <hr>
+    <div>
+        <h3 class="text-center mt-3 mb-3">MY PROJECT</h3>
+    </div>
+    {{!-- {{#each data}} --}}
+    <div class="card1 mb-3 shadow">
+        <div class="">
+            <img src="/assets/image/img2.jfif" class="card-img-top mb-3" style="object-fit: cover; border-radius: 10px;" alt="img2">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="/project-detail" target="_blank" class="mb-4"></a>apa aja</h5>
+                <p id="durasi" style="font-size: 14px; color: #5d5c5c;">durasi : 3 bulan</p>
+                
+                <p class="card-text-justify" style="text-align: justify;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+       
+                <div class="d-flex ">
+                    <a href="#" class="btn btn-secondary col">Edit</a>
+                    <a href="#" class="btn btn-secondary col">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

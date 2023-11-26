@@ -70,7 +70,8 @@ function renderMyproject() {
       </div>
     <div>
         <h3>
-            <a href="./my-project-detail.html" target="_blank"></a>${data[i].Project}</h3>
+            <a href="./my-project-detail.html" target="_blank">${data[i].Project}</a>
+        </h3>
         <p style="font-size: 14px; color: #5d5c5c; margin-top: -10px;">durasi : ${data[i].durationMonth} bulan</p>
     </div>
     <div class="project-p">
