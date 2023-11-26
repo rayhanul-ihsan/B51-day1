@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        *{
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-secondary{
+            background-color: black !important;
+        }
+        .btn1{ 
+            padding: 5px 20px;
+            border-radius: 20px;
+            background-color: black; 
+            text-align: center;
+        }
+        h1{
+            font-size: 30px;
+        }
+        .p{
+            text-align: justify;
+        }
+        body{
+            background-color: #E3E7EB !important;
+        }
+        nav{
+            background-color: #F4F3F3 !important;
+        }
+        .container{
+            width: 350px;
+            margin: 50px auto;
+        }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5" style="font-size: 20px;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/home">
+            <img src="/assets/image/logo.png" alt="logo">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="/home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/project">Add Project</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/testimonials">Testimonial</a>
+              </li>
+              
+            </ul>
+            <div>
+                <a href="/contact-me">
+                    <button type="button" class="btn btn-secondary">Contact me</button>
+                </a>
+            </div>
+          </div>
+        </div>
+    </nav>
+
+    <form class="container" method="post" action="/project">
+        <div class="mb-4">
+            <h1 class="text-center">ADD MY PROJECT</h1>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Project Name</label>
+            <input type="text" class="form-control shadow" id="name" name="project"/>
+        </div>
+        <div class="mb-3 d-flex justify-content-between">
+            <div class="" style="width: 50%;">
+                <label for="start" class="form-label">Start Date</label>
+                <input type="date" class="form-control shadow " id="start" name="start" required>
+            </div>
+
+            <div class="" style="width: 50%;">
+                <label for="end" class="form-label">End Date</label>
+                <input type="date" class="form-control shadow " id="end" name="end" required>
+            </div>
+        </div>            
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" class="form-control shadow" name="content"></textarea>
+        </div>
+
+        <div>
+            <label class="form-label">Sosial Media</label>
+        </div>
+        <div class="d-flex">
+            <div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="linked" value="linked" id="linked">
+                    <label class="form-check-label" for="linked" > Linkedin</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="ig" value="ig" id="ig">
+                    <label class="form-check-label" for="ig" > Instagram</label>
+                </div>
+            </div>
+            <div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="fb" value="fb" id="fb">
+                    <label class="form-check-label" for="fb" > Facebook</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="twitt" value="twitt" id="twitt">
+                    <label class="form-check-label" for="twitt" > Twitter</label>
+                </div>
+            </div>
+        </div> 
+        <div class="mb-3">
+            <label for="myFile" class="form-label">Upload Image</label>
+            <input type="file" class="form-control shadow" id="myFile">
+        </div>  
+        <div class="d-flex justify-content-end mb-3 " >
+            <button class="btn btn-secondary">Submit</button>
+        </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
