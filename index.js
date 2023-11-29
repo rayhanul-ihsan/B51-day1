@@ -21,7 +21,7 @@ app.post('/project', addProject)
 app.get('/edit-project/:id', editProjectView)
 app.post('/edit-project', editProject)
 
-app.get('/project-detail/:id', projectDetail)
+app.get('/project/:id', projectDetail)
 app.get('/testimonials', testimonial)
 
 const data = []
@@ -61,7 +61,7 @@ function duration(startDate, endDate) {
     return durasi
 }
 function addProject (req,res) {
-    const { project, content, startDate, endDate, nodejs, nextjs, reactjs, typescript } = req.body
+    const { project, content, startDate, endDate, nodejs, nextjs, reactjs, typescript } = req.body 
     const Duration = duration(startDate, endDate) 
 
     console.log("Project :", project)
@@ -91,6 +91,7 @@ function addProject (req,res) {
 }
 
 function editProjectView (req,res) {
+    // destructuring
     const{id} = req.params
 
     const dataFilter = data[parseInt(id)]
@@ -107,6 +108,7 @@ function editProject (req,res) {
     console.log("Content :", content)
     console.log("Start Date :", startDate)
     console.log("End Date :", endDate)
+    console.log("duration :", Duration)
     console.log("nodejs :", nodejs)
     console.log("nextjs :", nextjs)
     console.log("reactjs :", reactjs)
@@ -137,14 +139,16 @@ function projectDetail (req,res) {
     const project = "mencari berkah"
     const content = "apa ajaa"
     const startDate = "01 nov 2023"
-    const endDate = "01 nov 2023"
+    const endDate = "01 des 2023"
+    const Duration = duration(startDate, endDate)
 
     const data ={
         id,
         project,
         content,
         startDate,
-        endDate
+        endDate,
+        Duration
     }
     res.render('project-detail', {data})
 }
