@@ -1,7 +1,13 @@
+//import package
 const express = require('express')
 const path = require('path')
 const app = express()
 const port = 5000
+
+//postgreSQL dan Sequelize
+const config = require('./src/config/config.json')
+const { Sequelize, QueryTypes } = require("sequelize")
+const sequelize = new Sequelize(config.development)
 
 //config 
 app.set('view engine', 'hbs')
@@ -10,6 +16,8 @@ app.set('views', path.join(__dirname, 'src/views'))
 app.use("/assets" ,express.static('src/assets'))
 app.use(express.urlencoded({extended: false}))
 
+
+//routing
 app.get('/home', home)
 
 app.get('/contact-me', contactMe)
@@ -26,8 +34,22 @@ app.get('/testimonials', testimonial)
 
 const data = []
 
-function home (req,res) {
-    res.render('index', {dataProject : data})
+//callback
+async function home (req,res) {
+    try {
+        const query = 'SELECT * FROM public.projects'
+        let obj = await sequelize.query(query, {type: QueryTypes.SELECT})
+
+        const data = obj.map((res) => ({
+            ...res,
+            technologies: ["nodejs", "nextjs"]
+        }))
+        console.log('data dari database:', obj)
+        res.render('index', {dataProject : obj})
+    } catch(error){
+        console.log(error)
+    }
+    
 }
 function contactMe (req,res) {
     res.render('contact-me')
@@ -107,6 +129,7 @@ function editProject (req,res) {
     console.log("Content :", content)
     console.log("Start Date :", startDate)
     console.log("End Date :", endDate)
+    console.log("duration :", Duration)
     console.log("nodejs :", nodejs)
     console.log("nextjs :", nextjs)
     console.log("reactjs :", reactjs)
@@ -138,13 +161,15 @@ function projectDetail (req,res) {
     const content = "apa ajaa"
     const startDate = "01 nov 2023"
     const endDate = "01 nov 2023"
+    const Duration = duration(startDate, endDate)
 
     const data ={
         id,
         project,
         content,
         startDate,
-        endDate
+        endDate,
+        Duration
     }
     res.render('project-detail', {data})
 }
@@ -152,7 +177,7 @@ function projectDetail (req,res) {
 function testimonial (req,res) {
     res.render('testimonials')
 }
-
+//setup localhost
 app.listen(port, () =>{
     console.log(`example app listening on port ${port}`)
 })

@@ -117,11 +117,12 @@
                 <img src="/assets/image/img2.jfif" class="card-img-top mb-3" style="object-fit: cover; border-radius: 10px;" alt="img2">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="/project-detail" target="_blank" class="mb-4">{{@index}}  |  {{this.project}}</a></h5>
-                    <p id="durasi" style="font-size: 14px; color: #5d5c5c;">durasi :{{this.duration}}</p>
+                        <a href="/project-detail" target="_blank" class="mb-4">{{this.name}}</a></h5>
+                    <p id="durasi" style="font-size: 14px; color: #5d5c5c;">durasi :{{this.Duration}}</p>
                     
-                    <p class="card-text-justify" style="text-align: justify;">{{this.content}}</p>
+                    <p class="card-text-justify" style="text-align: justify;">{{this.description}}</p>
                     <div class="d-flex  mb-4 align-items-center">
+                      {{technologies}}
                       {{#if this.nodejs}}<i class="fa-brands fa-node-js fa-2x" style="margin-right: 10px;"></i>{{else}}{{/if}}
                       {{#if this.reactjs}}<i class="fa-brands fa-react fa-2x" style="margin-right: 10px;"></i>{{else}}{{/if}}
                       {{#if this.nextjs}}<i class="fa-brands fa-square-js fa-2x" style="margin-right: 10px;"></i>{{else}}{{/if}}
