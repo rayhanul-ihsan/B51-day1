@@ -17,8 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     start_date: DataTypes.DATEONLY,
     end_date: DataTypes.DATEONLY,
+    duration: DataTypes.STRING,
     description: DataTypes.STRING,
-    technologies: DataTypes.STRING,
+    nodejs: DataTypes.BOOLEAN,
+    nextjs: DataTypes.BOOLEAN,
+    reactjs: DataTypes.BOOLEAN,
+    typescript: DataTypes.BOOLEAN,
     image: DataTypes.STRING
   }, {
     sequelize,

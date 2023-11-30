@@ -18,11 +18,23 @@ module.exports = {
       end_date: {
         type: Sequelize.DATEONLY
       },
+      duration: {
+        type: Sequelize.STRING
+      },
       description: {
         type: Sequelize.STRING
       },
-      technologies: {
-        type: Sequelize.STRING
+      nodejs: {
+        type: Sequelize.BOOLEAN
+      },
+      nextjs: {
+        type: Sequelize.BOOLEAN
+      },
+      reactjs: {
+        type: Sequelize.BOOLEAN
+      },
+      typescript: {
+        type: Sequelize.BOOLEAN
       },
       image: {
         type: Sequelize.STRING
