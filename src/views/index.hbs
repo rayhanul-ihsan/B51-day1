@@ -47,9 +47,9 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5" style="font-size: 20px;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="font-size: 20px;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/home">
+          <a class="navbar-brand mx-4" href="/home">
             <img src="/assets/image/logo.png" alt="logo">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,25 +58,46 @@
           <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                <a class="nav-link mx-4 active" aria-current="page" href="/home">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="/project">Add Project</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="/testimonials">Testimonial</a>
-              </li>              
+              </li>             
             </ul>
-            <div>
+            <div class="div-r d-flex align-item-center mx-4">
+              <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                {{#if isLogin}}
+                    <li class="nav-item d-flex">
+                      <h2 class=" mx-4" style="font-size: medium;">Good to see you, {{users.name}}</h2>
+                      <a href="/logout"><button class="btn btn-secondary mx-2">logout</button>
+                      </a>
+                    </li>
+                {{else}}
+                    <li class="nav-item">
+                      <a class="nav-link mx-2 " href="/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link mx-4 my-2o" href="/login">Login</a>
+                    </li>
+                {{/if}}
+                
+              </ul>
                 <a href="/contact-me">
-                <button type="button" class="btn btn-secondary">Contact me</button>
+                    <button type="button" class="btn btn-secondary mx-3">Contact me</button>
                 </a>
             </div>
           </div>
         </div>
     </nav>
+    {{#if messages.success}}
+    <div class="alert alert-success" role="alert">
+      <div class="container my-1">
+          {{messages.success}}
+      </div>
+    </div>
+    {{/if}}
 
-    <div class="container card shadow p-3 mb-5 bg-body rounded" style="width: 800px;">
+    <div class="container card shadow p-3 my-5 bg-body rounded" style="width: 800px;">
         <section class="d-flex justify-content-between ">
             <div class="leftd-flex justify-content-start p-2 w-50" >
                 <h1 class="mb-4 mt-3">Hi Welcome to my profile</h1>
@@ -99,7 +120,7 @@
             </div>
                     
             <div class="card d-flex justify-content-end mt-2 shadow  mb-1 bg-body rounded"  style="width: 45%; ">
-                <img src="/assets/image/pic.JPG" class="card-img-top" alt="rayhan"/>
+                <img src="/assets/image/pic.JPG" class="card-img-top object-fit-cover border rounded" alt="rayhan"/>
                     <div class="card-body" style="text-align: center;">
                         <h2 class="card-title">M Rayhanul Ihsan</h2>
                         <p class="card-text">Fullstack Developer</p>

@@ -3,6 +3,9 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 5000;
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const flash = require('express-flash');
 
 //postgreSQL dan Sequelize
 const config = require('./src/config/config.json');
@@ -15,6 +18,18 @@ app.set('views', path.join(__dirname, 'src/views'));
 
 app.use('/assets', express.static('src/assets'));
 app.use(express.urlencoded({ extended: false }));
+app.use(flash());
+app.use(session({
+  name:'data_login',
+  secret: 'sangat rahasia', //generate secret key
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+    secure: false,
+    maxAge: 1000 * 60  * 60 * 24
+  }
+}));
+
 
 //routing
 app.get('/home', home);
@@ -31,6 +46,14 @@ app.post('/edit-project', editProject);
 app.get('/project-detail/:id', projectDetail);
 app.get('/testimonials', testimonial);
 
+app.get('/register', registerProject);
+app.post('/register', registerr);
+
+app.get('/login', loginProject);
+app.post('/login', login);
+
+app.get('/logout', logout);
+
 // const data = []; // This line is not being used
 
 //callback
@@ -39,10 +62,80 @@ async function home(req, res) {
     const query = `SELECT * FROM public.projects`;
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
     console.log('data dari database:', obj);
-    res.render('index', { dataProject: obj });
+
+    const isLogin = req.session.isLogin;
+    const users = req.session.users;
+
+    res.render('index', { dataProject: obj, users, isLogin });
+
   } catch (error) {
     console.log(error);
   }
+}
+function registerProject(req,res) {
+  res.render('register');
+}
+async function registerr(req,res) {
+  const {name, email, password} = req.body;
+  
+  console.log("name:", name);
+  console.log("email:", email);
+  console.log("password:", password);
+
+  const salt = 10;
+  // let hashPassword = "";
+
+  bcrypt.hash(password, salt, async (err, hash) => {
+    if (err) {
+      console.error("password failed!!");
+      req.flash('danger', 'register failed : password failed!!');
+      return req.redirect('/register');
+    }
+
+    console.log("hasil hash:", hash);
+
+    // const query = `INSERT INTO users(name, email, password) VALUES ('${name}', '${email}', '${hash}')`;
+    await sequelize.query(`INSERT INTO users(name, email, password) VALUES ('${name}', '${email}', '${hash}')`);
+    req.flash('success', 'register success!!');
+    res.redirect('/home');   
+  });
+   
+}
+function loginProject(req,res) {
+  res.render('login');
+}
+async function login(req,res) {
+  const {email, password} = req.body;
+  const query = `SELECT * FROM users WHERE email='${email}'`;
+  const obj = await sequelize.query(query, {type: QueryTypes.SELECT});
+  console.log(obj);
+
+  if (!obj.length) {
+    console.error("user not registered!");
+    req.flash('danger', 'Login failed : Email is Wrong!!');
+    return res.redirect('/login');
+  }
+
+  bcrypt.compare(password, obj[0].password, (err, result) => {
+    if (err) {
+      req.flash('danger', 'Login failed : Password is Wrong!!');
+      return console.error("login: Internal Server Error!!");
+    }
+    if (!result) {
+      console.error("password is wrong!");
+      req.flash('danger', 'Login failed!!');
+      return res.redirect('/login');
+    }
+    console.log('login success');
+    req.flash('success', 'Login success!!');
+    req.session.isLogin = true;  //pernyataan kalau login berhasil
+    req.session.users = {
+      name: obj[0].name,
+      email:obj[0].email
+    }
+    res.redirect('/home');
+  }); 
+  
 }
 
 function contactMe(req, res) {
@@ -157,37 +250,6 @@ async function editProject(req, res) {
     console.log('berhasil di update', obj);
     res.redirect("/home");
 }
-
-    // try{
-        // var { project, content, startDate, endDate, id } = req.body;
-        // var Durations = duration(startDate, endDate);
-    
-        // var query = `UPDATE public.projects SET name='${project}', start_date='${startDate}', end_date='${endDate}', duration='${Durations}', description='${content}' WHERE id=${id}`;
-        // var obj = await sequelize.query(query, { type: QueryTypes.UPDATE });
-        
-        // console.log('berhasil di update', obj);
-       
-        // res.redirect('/home');
-    // } catch (error) {
-    //     console.log(error);
-    //     // res.redirect('/edit-project');
-    // }
-
-    // const { project, content, startDate, endDate, id } = req.body;
-    // const Duration = duration(startDate, endDate);
-  
-    // const query = `UPDATE public.projects SET name='${project}', start_date='${startDate}', end_date='${endDate}', duration='${Duration}', description='${content}' WHERE id=${id}`;
-    // const obj = await sequelize.query(query);
-
-    // await sequelize.query(
-    //     `UPDATE INTO public.projects SET '${project}', start_date='${startDate}', end_date='${endDate}', duration='${Durations}', description='${content}', nodejs=${nodejs}, nextjs=${nextjs}, reactjs=${reactjs}, typescript=${typescript} WHERE id=${id})`
-    //     );
-  
-  
-    // res.redirect('/home');
-  
-
-
 async function deleteProject(req, res) {
   const { id } = req.params;
 
@@ -210,6 +272,12 @@ async function projectDetail(req, res) {
 }
 function testimonial(req, res) {
   res.render('testimonials');
+}
+function logout(req, res) {
+  req.session.destroy(function(err) {
+    res.redirect('/login');
+  } );
+  // req.render('login');
 }
 //setup localhost
 app.listen(port, () => {
