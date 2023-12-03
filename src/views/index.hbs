@@ -135,11 +135,13 @@
         <div class="d-flex flex-row flex-wrap">
           {{#each dataProject}}
             <div class="card1 mb-3 shadow">
-                <img src="/assets/image/{{this.image}}" class="card-img-top mb-3" style="object-fit: cover; border-radius: 10px;" alt="img2">
+                <img src="/uploads/{{this.image}}" class="card-img-top mb-3" style="object-fit: cover; border-radius: 10px;" alt="img2">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="/project-detail/{{this.id}}" target="_blank" class="mb-4">{{this.name}}</a></h5>
-                    <p id="durasi" style="font-size: 14px; color: #5d5c5c;">durasi :{{this.duration}}</p>
+                        <a href="/project-detail/{{this.id}}" target="_blank" class="my-4" style="text-decoration: none; color: black;">{{this.name}}</a></h5>
+                    <h6 id="durasi" class="my-2" style="font-style: italic;">Author: {{author}} | Durasi: {{this.duration}} </h6>
+                    {{!-- <h6 id="durasi" style="font-style: italic;">Durasi: {{this.duration}}</h6> --}}
+                    {{!-- <p id="durasi" style="font-size: 14px; color: #5d5c5c;">durasi :{{this.duration}}</p> --}}
                     
                     <p class="card-text-justify" style="text-align: justify;">{{this.description}}</p>
                     <div class="d-flex  mb-4 align-items-center">

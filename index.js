@@ -7,6 +7,9 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const flash = require('express-flash');
 
+//import file
+const upload = require('./src/middlewares/uploadFile');
+
 //postgreSQL dan Sequelize
 const config = require('./src/config/config.json');
 const { Sequelize, QueryTypes } = require('sequelize');
@@ -17,6 +20,8 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'src/views'));
 
 app.use('/assets', express.static('src/assets'));
+app.use('/uploads', express.static('src/uploads'));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(flash());
 app.use(session({
@@ -38,10 +43,10 @@ app.get('/contact-me', contactMe);
 app.post('/delete-project/:id', deleteProject);
 
 app.get('/project', addProjectView);
-app.post('/project', addProject);
+app.post('/project', upload.single("image"), addProject);
 
 app.get('/edit-project/:id', editProjectView);
-app.post('/edit-project', editProject);
+app.post('/edit-project',editProject);
 
 app.get('/project-detail/:id', projectDetail);
 app.get('/testimonials', testimonial);
@@ -59,7 +64,9 @@ app.get('/logout', logout);
 //callback
 async function home(req, res) {
   try {
-    const query = `SELECT * FROM public.projects`;
+    const query = `SELECT projects.id, projects.name, start_date, end_date, duration, projects.description, nodejs, nextjs, reactjs, typescript, image,
+    users.name AS author FROM projects LEFT JOIN users ON 
+    projects."authorId"=users.id;`;
     const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
     console.log('data dari database:', obj);
 
@@ -130,6 +137,7 @@ async function login(req,res) {
     req.flash('success', 'Login success!!');
     req.session.isLogin = true;  //pernyataan kalau login berhasil
     req.session.users = {
+      id: obj[0].id,
       name: obj[0].name,
       email:obj[0].email
     }
@@ -175,8 +183,10 @@ async function addProject(req, res) {
   try {
     var { project, content, startDate, endDate, nodejs, nextjs, reactjs, typescript } = req.body;
 
-    let image = "pic1.jpg";
+    
     var Durations = duration(startDate, endDate);
+    const image = req.file.filename;
+    const authorId = req.session.users.id;
 
     if (nodejs === 'on') {
       nodejs = true;
@@ -200,9 +210,11 @@ async function addProject(req, res) {
     }
 
     await sequelize.query(
-      `INSERT INTO public.projects (name, start_date, end_date, duration, description, nodejs, nextjs, reactjs, typescript, image) 
-            VALUES ('${project}', '${startDate}', '${endDate}', '${Durations}', '${content}', ${nodejs}, ${nextjs}, ${reactjs}, ${typescript}, '${image}')`
+      `INSERT INTO public.projects (name, start_date, end_date, duration, description, nodejs, nextjs, reactjs, typescript, image, "authorId") 
+            VALUES ('${project}', '${startDate}', '${endDate}', '${Durations}', '${content}', ${nodejs}, ${nextjs}, ${reactjs}, ${typescript}, '${image}', '${authorId}');`
     );
+    // const isLogin = req.session.isLogin;
+    // const users = req.session.users;
     res.redirect('/home');
   } catch (error) {
     console.log(error);
@@ -211,6 +223,9 @@ async function addProject(req, res) {
 }
 
 async function editProjectView(req, res) {
+  if (!req.session.isLogin) {
+    return res.redirect('/login')
+  }
   const { id } = req.params;
 
   const query = `SELECT * FROM public.projects WHERE id=${id}`;
@@ -251,6 +266,9 @@ async function editProject(req, res) {
     res.redirect("/home");
 }
 async function deleteProject(req, res) {
+  if (!req.session.isLogin) {
+    return res.redirect('/login')
+  }
   const { id } = req.params;
 
   const query = `DELETE FROM public.projects WHERE id=${id}`;
@@ -263,7 +281,10 @@ async function deleteProject(req, res) {
 
 async function projectDetail(req, res) {
   const { id } = req.params;
-  const query = `SELECT * FROM public.projects WHERE id=${id}`;
+
+  const query = `SELECT projects.id, projects.name, start_date, end_date, duration, projects.description, nodejs, nextjs, reactjs, typescript, image,
+  users.name AS author FROM projects LEFT JOIN users ON 
+  projects."authorId"=users.id WHERE projects.id=${id}`;
   const obj = await sequelize.query(query, { type: QueryTypes.SELECT });
 
   console.log('data aman', obj);
@@ -274,10 +295,10 @@ function testimonial(req, res) {
   res.render('testimonials');
 }
 function logout(req, res) {
-  req.session.destroy(function(err) {
-    res.redirect('/login');
-  } );
-  // req.render('login');
+  req.session.isLogin = false;
+  req.session.users = {};
+  req.flash('success', 'Logout success!!');
+  res.redirect('/login');
 }
 //setup localhost
 app.listen(port, () => {

@@ -88,10 +88,12 @@
                 </div>
                 <div class="d-flex">
                     <div class="pic">
-                        <img src="../assets/image/{{data.image}}" alt="pic1">
+                        <img src="/uploads/{{data.image}}" alt="pic1">
                     </div>
-                    <div class="mx-4 mt-5">
+                    <div class="mx-4 my-4">
                         <div>
+                          <h3 style="font-size: 20px;">Author:</h3>
+                          <h3 id="durasi" style="font-style: italic; font-size: 20px;">{{data.author}}</h3>                          
                             <h3 style="font-size: 20px;">Duration</h3>
                             <table class="mb-2">
                                 <tr>
@@ -134,7 +136,7 @@
                                 </div>
                                 {{/if}}
                             </div>
-                        </div>
+                        </div>                  
                     </div>
                 </div>
             </div>

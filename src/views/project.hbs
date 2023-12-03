@@ -58,12 +58,12 @@
             </ul>
             <div class="div-r d-flex align-item-center mx-4">
               <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                {{#if isLogin}}
+                {{!-- {{#if isLogin}}
                     <li class="nav-item d-flex">
                       <h2 class=" mx-4" style="font-size: medium;">Good to see you, {{users.name}}</h2>
                       <a href="/logout"><button class="btn btn-secondary mx-2">logout</button>
                       </a>
-                    </li>
+                    </li> 
                 {{else}}
                     <li class="nav-item">
                       <a class="nav-link mx-2 " href="/register">Register</a>
@@ -71,17 +71,25 @@
                     <li class="nav-item">
                       <a class="nav-link mx-4 my-2o" href="/login">Login</a>
                     </li>
-                {{/if}}                
+                {{/if}}                 --}}
               </ul>
                 <a href="/contact-me">
                     <button type="button" class="btn btn-secondary mx-3">Contact me</button>
                 </a>
             </div>
-          </div>
+          </div> 
         </div>
     </nav>
 
-    <form class="container" method="post" action="/project">
+    {{#if messages.success}}
+    <div class="alert alert-success" role="alert">
+      <div class="container my-1">
+          {{messages.success}}
+      </div>
+    </div>
+    {{/if}}
+
+    <form class="container" method="post" action="/project" enctype="multipart/form-data"> 
         <div class="mb-4">
             <h1 class="text-center">ADD MY PROJECT</h1>
         </div>
@@ -132,7 +140,7 @@
         </div> 
         <div class="mb-3">
             <label for="myFile" class="form-label">Upload Image</label>
-            <input type="file" class="form-control shadow" id="myFile">
+            <input type="file" class="form-control shadow" name="image" id="myFile">
         </div>  
         <div class="d-flex justify-content-end mb-3 " >
             <button class="btn btn-secondary">Submit</button>

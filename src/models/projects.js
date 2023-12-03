@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     nextjs: DataTypes.BOOLEAN,
     reactjs: DataTypes.BOOLEAN,
     typescript: DataTypes.BOOLEAN,
-    image: DataTypes.STRING
+    image: DataTypes.STRING,
+    authorId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'projects',
